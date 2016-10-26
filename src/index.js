@@ -12,12 +12,16 @@ class GifPlayerContainer extends React.Component {
     this.state = {
       playing: false
     };
-    if (props.gif) {
-      preloadGif(props.gif);
+  }
+
+  componentDidMount() {
+    const { gif } = this.props;
+    if (gif) {
+      preloadGif(gif);
     }
   }
 
-  componentDidMount (nextProps) {
+  componentWillReceiveProps (nextProps) {
     const oldGif = this.props.gif;
     const newGif = nextProps.gif;
     if (newGif && oldGif !== newGif) {
