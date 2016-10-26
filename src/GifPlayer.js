@@ -20,4 +20,4 @@ GifPlayer.propTypes = {
   toggle: React.PropTypes.func
 };
 
-export default GifPlayer;
+module.exports = GifPlayer;

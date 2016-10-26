@@ -47,4 +47,4 @@ GifPlayerContainer.propTypes = {
   still: React.PropTypes.string
 };
 
-export default GifPlayerContainer;
+module.exports = GifPlayerContainer;
