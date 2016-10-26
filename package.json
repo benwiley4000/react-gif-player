@@ -4,6 +4,8 @@
   "description": "React component swaps still image with preloaded GIF on click",
   "main": "dist/index.js",
   "scripts": {
+    "build": "rimraf dist && webpack --progress",
+    "dev": "rimraf dist && webpack --progress --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -30,6 +32,7 @@
     "extract-text-webpack-plugin": "^1.0.1",
     "node-sass": "^3.10.1",
     "postcss-loader": "^1.0.0",
+    "rimraf": "^2.5.4",
     "style-loader": "^0.13.1",
     "webpack": "^1.13.2"
   },
