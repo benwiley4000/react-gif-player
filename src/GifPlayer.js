@@ -8,8 +8,8 @@ const GifPlayer = ({ gif, still, playing, toggle, ...rest }) => (
     className={classNames('gif_player', { 'playing': playing })}
     onClick={toggle}
   >
-    <div className='play_button' />
-    <img {...rest} src={playing ? gif : still} />
+    <div className="play_button" />
+    <img {...rest} src={playing ? (gif || still) : (still || gif)} />
   </div>
 );
 
