@@ -40,13 +40,6 @@
   "peerDependencies": {
     "react": "^15.3.2"
   },
-  "dependencies": {
-    "autoprefixer": "^6.5.1",
-    "extract-text-webpack-plugin": "^1.0.1",
-    "rimraf": "^2.5.4",
-    "sass-loader": "^4.0.2",
-    "webpack": "^1.13.2"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/benwiley4000/react-gif-player.git"
