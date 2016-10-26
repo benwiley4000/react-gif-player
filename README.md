@@ -12,7 +12,7 @@ Similar to Facebook's GIF toggle UI, this React component displays a still image
 npm install react-gif-player react react-dom
 ```
 
-If you're unable to use npm and need production-ready scripts, check out [the releases](https://github.com/benwiley4000/react-gif-player/releases).**
+If you're unable to use npm and need production-ready scripts, check out [the releases](https://github.com/benwiley4000/react-gif-player/releases).
 
 ## usage
 
