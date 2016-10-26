@@ -1,6 +1,12 @@
 # react-gif-player
 
-Usage:
+## install
+
+```
+npm install react-gif-player react react-dom
+```
+
+## usage
 
 ```javascript
 var React = require('react');
@@ -22,3 +28,7 @@ ReactDOM.render(
   document.getElementById('cat')
 );
 ```
+
+## development
+
+For building and testing instructions, see [CONTRIBUTING.md](CONTRIBUTING.md).
