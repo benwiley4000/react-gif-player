@@ -4,13 +4,51 @@ Similar to Facebook's GIF toggle UI, this React component displays a still image
 
 *Note:* Unlike Facebook's UI, which uses an HTML video element to preserve playback progress, this component uses the actual GIF and will be reset on each click.
 
+### [see a live demo here](https://benwiley4000.github.io/react-gif-player/)
+
 ## install
 
 ```
 npm install react-gif-player react react-dom
 ```
 
+If you're unable to use npm and need production-ready scripts, check out [the releases](https://github.com/benwiley4000/react-gif-player/releases).**
+
 ## usage
+
+### quick start
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <!-- gifplayer.css v0.1.0 -->
+    <link rel="stylesheet" href="https://cdn.rawgit.com/benwiley4000/react-gif-player/080edebfb7556fbe741f1b03467d53c18916acac/gifplayer.css">
+  </head>
+  <body>
+    <div id="cat"></div>
+    <!-- react/react-dom served over CDN -->
+    <script src="https://unpkg.com/react@15/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>
+    <!-- gifplayer.js v0.1.0 -->
+    <script src="https://cdn.rawgit.com/benwiley4000/react-gif-player/080edebfb7556fbe741f1b03467d53c18916acac/gifplayer.js"></script>
+    <script>
+      ReactDOM.render(
+        React.createElement(GifPlayer, {
+          gif: '/img/cat.gif',
+          still: '/img/cat.jpg'
+        }),
+        document.getElementById('cat')
+      );
+    </script>
+  </body>
+</html>
+
+```
+
+### with a module bundler
 
 ```javascript
 var React = require('react');
@@ -20,15 +58,6 @@ var GifPlayer = require('react-gif-player');
 // with JSX
 ReactDOM.render(
   <GifPlayer gif="/img/cat.gif" still="/img/cat.jpg" />,
-  document.getElementById('cat')
-);
-
-// without JSX
-ReactDOM.render(
-  React.createElement(GifPlayer, {
-    gif: '/img/cat.gif',
-    still: '/img/cat.jpg'
-  }),
   document.getElementById('cat')
 );
 ```
