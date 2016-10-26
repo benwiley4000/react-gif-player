@@ -1,6 +1,6 @@
 # react-gif-player
 
-Similar to Facebook's GIF toggle UI, this React component displays a still image preview by default, and swaps in an animated GIF when clicked.
+Similar to Facebook's GIF toggle UI, this React component displays a still image preview by default, and swaps in an animated GIF when clicked. The images are preloaded as soon as the component mounts, or whenever a new source is passed.
 
 *Note:* Unlike Facebook's UI, which uses an HTML video element to preserve playback progress, this component uses the actual GIF and will be reset on each click.
 
@@ -32,6 +32,18 @@ ReactDOM.render(
   document.getElementById('cat')
 );
 ```
+
+### options
+
+Options can be passed to the `GifPlayer` element as props.
+
+* `gif`: a *string* address to an animated GIF image.
+
+* `still`: a *string* address to a still preview of the GIF (e.g. JPG, PNG, etc.)
+
+* Any other attribute available on the HTML `img` tag can be passed as well (excluding `src`, which would be overwritten), though keep in mind React's version of that attribute [may be different than you expect](https://facebook.github.io/react/docs/dom-elements.html#all-supported-html-attributes).
+
+`GifPlayer` expects one or both of the `gif` and `still` props. If one is left out, the other will be used as a fallback.
 
 ## styles
 
