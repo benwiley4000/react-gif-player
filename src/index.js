@@ -2,7 +2,7 @@ import React from 'react';
 
 import GifPlayer from './GifPlayer';
 
-const preloadGif = src => {
+const preload = src => {
   new Image().src = src;
 };
 
@@ -15,9 +15,12 @@ class GifPlayerContainer extends React.Component {
   }
 
   componentDidMount() {
-    const { gif } = this.props;
+    const { gif, still } = this.props;
     if (gif) {
-      preloadGif(gif);
+      preload(gif);
+    }
+    if (still) {
+      preload(still);
     }
   }
 
@@ -25,7 +28,12 @@ class GifPlayerContainer extends React.Component {
     const oldGif = this.props.gif;
     const newGif = nextProps.gif;
     if (newGif && oldGif !== newGif) {
-      preloadGif(newGif);
+      preload(newGif);
+    }
+    const oldStill = this.props.still;
+    const newStill = nextProps.still;
+    if (newStill && newStill !== oldStill) {
+      preload(newStill);
     }
   }
 
