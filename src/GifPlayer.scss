@@ -5,7 +5,10 @@ $gif_btn_border_color: $gif_btn_text_color !default;
 $gif_btn_font_family: 'Helvetica Neue', Helvetica, Arial, sans-serif !default;
 
 .gif_player {
+  display: inline-block;
   position: relative;
+  user-select: none;
+  -webkit-touch-callout: none;
 
   .play_button {
     background-color: rgba($gif_btn_bg_color, 0.5);
