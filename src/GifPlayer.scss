@@ -1,0 +1,45 @@
+$gif_btn_bg_color: #000 !default;
+$gif_btn_box_shadow_color: #000 !default;
+$gif_btn_text_color: #fff !default;
+$gif_btn_border_color: $gif_btn_text_color !default;
+$gif_btn_font_family: 'Helvetica Neue', Helvetica, Arial, sans-serif !default;
+
+.gif_player {
+  position: relative;
+
+  .play_button {
+    background-color: rgba($gif_btn_bg_color, 0.5);
+    border: 2px dashed $gif_btn_border_color;
+    border-radius: 50%;
+    box-shadow: 0 0 0 3px rgba($gif_btn_box_shadow_color, 0.5);
+    color: $gif_btn_text_color;
+    cursor: pointer;
+    font-family: $gif_btn_font_family;
+    font-size: 24px;
+    left: 50%;
+    opacity: 1.0;
+    padding: 14px 10px;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+    transition: transform 0.4s, opacity 0.4s;
+
+    &:hover {
+      background-color: rgba($gif_btn_bg_color, 0.7);
+      box-shadow: 0 0 0 3px rgba($gif_btn_box_shadow_color, 0.7);
+    }
+
+    &::after {
+      content: 'GIF'
+    }
+  }
+
+  &.playing .play_button {
+    transform: translate(-50%, -50%) scale(0) rotate(180deg);
+    opacity: 0.5;
+  }
+
+  img {
+    max-width: 100%;
+  }
+}
