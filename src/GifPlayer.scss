@@ -1,19 +1,19 @@
-$button_bg_opacity: 0.5;
-$button_playing_opacity: 0.5;
-$button_bg_opacity_hover: 0.7;
-$start_rotation: 0deg;
-$target_rotation: 180deg;
-$max_image_width: 100%;
+$button_bg_opacity: 0.5 !default;
+$button_playing_opacity: 0.5 !default;
+$button_bg_opacity_hover: 0.7 !default;
+$start_rotation: 0deg !default;
+$target_rotation: 180deg !default;
+$max_image_width: 100% !default;
 $gif_btn_bg_color: #000 !default;
 $gif_btn_box_shadow_color: #000 !default;
 $gif_btn_text_color: #fff !default;
 $gif_btn_border_color: $gif_btn_text_color !default;
 $gif_btn_font_family: 'Helvetica Neue', Helvetica, Arial, sans-serif !default;
 
-$bg_color: rgba($gif_btn_bg_color, $button_bg_opacity);
-$box_shadow_color: rgba($gif_btn_box_shadow_color, $button_bg_opacity);
-$bg_color_hover: rgba($gif_btn_bg_color, $button_bg_opacity_hover);
-$box_shadow_color_hover: rgba($gif_btn_box_shadow_color, $button_bg_opacity_hover);
+$bg_color: rgba($gif_btn_bg_color, $button_bg_opacity) !default;
+$box_shadow_color: rgba($gif_btn_box_shadow_color, $button_bg_opacity) !default;
+$bg_color_hover: rgba($gif_btn_bg_color, $button_bg_opacity_hover) !default;
+$box_shadow_color_hover: rgba($gif_btn_box_shadow_color, $button_bg_opacity_hover) !default;
 
 .gif_player {
   display: inline-block;
