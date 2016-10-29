@@ -1,8 +1,19 @@
+$button_bg_opacity: 0.5 !default;
+$button_playing_opacity: 0.5 !default;
+$button_bg_opacity_hover: 0.7 !default;
+$start_rotation: 0deg !default;
+$target_rotation: 180deg !default;
+$max_image_width: 100% !default;
 $gif_btn_bg_color: #000 !default;
 $gif_btn_box_shadow_color: #000 !default;
 $gif_btn_text_color: #fff !default;
 $gif_btn_border_color: $gif_btn_text_color !default;
 $gif_btn_font_family: 'Helvetica Neue', Helvetica, Arial, sans-serif !default;
+
+$bg_color: rgba($gif_btn_bg_color, $button_bg_opacity) !default;
+$box_shadow_color: rgba($gif_btn_box_shadow_color, $button_bg_opacity) !default;
+$bg_color_hover: rgba($gif_btn_bg_color, $button_bg_opacity_hover) !default;
+$box_shadow_color_hover: rgba($gif_btn_box_shadow_color, $button_bg_opacity_hover) !default;
 
 .gif_player {
   display: inline-block;
@@ -11,10 +22,10 @@ $gif_btn_font_family: 'Helvetica Neue', Helvetica, Arial, sans-serif !default;
   -webkit-touch-callout: none;
 
   .play_button {
-    background-color: rgba($gif_btn_bg_color, 0.5);
+    background-color: $bg_color;
     border: 2px dashed $gif_btn_border_color;
     border-radius: 50%;
-    box-shadow: 0 0 0 3px rgba($gif_btn_box_shadow_color, 0.5);
+    box-shadow: 0 0 0 3px $box_shadow_color; 
     color: $gif_btn_text_color;
     cursor: pointer;
     font-family: $gif_btn_font_family;
@@ -24,12 +35,12 @@ $gif_btn_font_family: 'Helvetica Neue', Helvetica, Arial, sans-serif !default;
     padding: 14px 10px;
     position: absolute;
     top: 50%;
-    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+    transform: translate(-50%, -50%) scale(1) rotate($start_rotation);
     transition: transform 0.4s, opacity 0.4s;
 
     &:hover {
-      background-color: rgba($gif_btn_bg_color, 0.7);
-      box-shadow: 0 0 0 3px rgba($gif_btn_box_shadow_color, 0.7);
+      background-color: $bg_color_hover;
+      box-shadow: 0 0 0 3px $box_shadow_color_hover;
     }
 
     &::after {
@@ -38,11 +49,11 @@ $gif_btn_font_family: 'Helvetica Neue', Helvetica, Arial, sans-serif !default;
   }
 
   &.playing .play_button {
-    transform: translate(-50%, -50%) scale(0) rotate(180deg);
-    opacity: 0.5;
+    transform: translate(-50%, -50%) scale(0) rotate($target_rotation);
+    opacity: $button_playing_opacity;
   }
 
   img {
-    max-width: 100%;
+    max-width: $max_image_width;
   }
 }
