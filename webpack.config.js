@@ -9,10 +9,12 @@ var webpackConfig = {
   },
   output: {
     path: __dirname + '/dist',
+    publicPath: "/dist/",
     libraryTarget: 'umd',
     library: 'GifPlayer',
     filename: 'gifplayer.js'
   },
+  devServer: { inline: true },
   module: {
     loaders: [
       {
