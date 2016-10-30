@@ -4,7 +4,8 @@ Contributions are welcome. If the change you'd like to implement is a new featur
 ### Build
 To install build dependencies, run `npm install`.
 
-Run webpack with `npm run build`. Built files can be found in the `dist/` directory. You can also use `npm run dev`; it's configured to do exactly the same thing, except it will continue watching for any changes you make, and recompile.
+Run webpack with `npm run build`. Built files can be found in the `dist/` directory.
 
 ### Test
-After building, you can test your changes by opening up `example.html` in a web browser.
+
+The project is configured with webpack-dev-server. You can run `npm run dev` to start the dev server. This will build the module, watch the source for changes, and serve `example.html` file from http://localhost:8080. Source changes will be reflected automatically in the browser.

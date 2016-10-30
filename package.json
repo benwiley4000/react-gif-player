@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "rimraf dist && webpack --progress",
-    "dev": "rimraf dist && webpack --progress --watch",
+    "dev": "rimraf dist && webpack-dev-server --open",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -35,7 +35,8 @@
     "rimraf": "^2.5.4",
     "sass-loader": "^4.0.2",
     "style-loader": "^0.13.1",
-    "webpack": "^1.13.2"
+    "webpack": "^1.13.2",
+    "webpack-dev-server": "^1.16.2"
   },
   "peerDependencies": {
     "react": "^15.3.2"
