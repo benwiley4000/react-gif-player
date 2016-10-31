@@ -6,7 +6,11 @@ Similar to Facebook's GIF toggle UI, this React component displays a still image
 
 *Note:* Unlike Facebook's UI, which uses an HTML video element to preserve playback progress, this component uses the actual GIF and will be reset on each click.
 
-### [see a live demo here](https://benwiley4000.github.io/react-gif-player/)
+## demo
+
+See react-gif-player [live demo here](https://benwiley4000.github.io/react-gif-player/).
+
+![react-gif-player Gif Demo](https://cloud.githubusercontent.com/assets/1556583/19837009/8be5ce9a-9e8f-11e6-83a8-712d9b93de28.gif)
 
 ## install
 
