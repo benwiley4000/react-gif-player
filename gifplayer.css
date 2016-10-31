@@ -5,7 +5,8 @@
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
-  -webkit-touch-callout: none; }
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent; }
   .gif_player .play_button {
     background-color: rgba(0, 0, 0, 0.5);
     border: 2px dashed #fff;
