@@ -32,6 +32,7 @@ $gif_btn_text_content: 'GIF' !default;
   position: relative;
   user-select: none;
   -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
 
   .play_button {
     background-color: $gif_btn_bg_color;
