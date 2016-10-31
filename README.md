@@ -1,5 +1,7 @@
 # react-gif-player
 
+![react-gif-player in action](demo.gif)
+
 Similar to Facebook's GIF toggle UI, this React component displays a still image preview by default, and swaps in an animated GIF when clicked. The images are preloaded as soon as the component mounts, or whenever a new source is passed.
 
 *Note:* Unlike Facebook's UI, which uses an HTML video element to preserve playback progress, this component uses the actual GIF and will be reset on each click.
