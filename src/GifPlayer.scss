@@ -1,19 +1,26 @@
-$button_bg_opacity: 0.5 !default;
-$button_playing_opacity: 0.5 !default;
-$button_bg_opacity_hover: 0.7 !default;
-$start_rotation: 0deg !default;
-$target_rotation: 180deg !default;
-$max_image_width: 100% !default;
-$gif_btn_bg_color: #000 !default;
-$gif_btn_box_shadow_color: #000 !default;
+$gif_btn_bg_base_color: #000 !default;
+$gif_btn_bg_opacity: 0.5 !default;
+$gif_btn_bg_opacity_hover: 0.7 !default;
+$gif_btn_bg_color: rgba($gif_btn_bg_base_color, $gif_btn_bg_opacity) !default;
+$gif_btn_bg_color_hover: rgba($gif_btn_bg_base_color, $gif_btn_bg_opacity_hover) !default;
+
+$gif_btn_box_shadow_base_color: #000 !default;
+$gif_btn_box_shadow_opacity: $gif_btn_bg_opacity !default;
+$gif_btn_box_shadow_opacity_hover: $gif_btn_bg_opacity_hover !default;
+$gif_btn_box_shadow_color: rgba($gif_btn_box_shadow_base_color, $gif_btn_box_shadow_opacity) !default;
+$gif_btn_box_shadow_color_hover: rgba($gif_btn_box_shadow_base_color, $gif_btn_box_shadow_opacity_hover) !default;
+
 $gif_btn_text_color: #fff !default;
 $gif_btn_border_color: $gif_btn_text_color !default;
 $gif_btn_font_family: 'Helvetica Neue', Helvetica, Arial, sans-serif !default;
 
-$bg_color: rgba($gif_btn_bg_color, $button_bg_opacity) !default;
-$box_shadow_color: rgba($gif_btn_box_shadow_color, $button_bg_opacity) !default;
-$bg_color_hover: rgba($gif_btn_bg_color, $button_bg_opacity_hover) !default;
-$box_shadow_color_hover: rgba($gif_btn_box_shadow_color, $button_bg_opacity_hover) !default;
+$gif_btn_regular_opacity: 1.0 !default;
+$gif_btn_playing_opacity: 0.5 !default;
+
+$gif_btn_paused_rotation: 0deg !default;
+$gif_btn_playing_rotation: 180deg !default;
+
+$gif_btn_text_content: 'GIF' !default;
 
 .gif_player {
   display: inline-block;
@@ -22,38 +29,38 @@ $box_shadow_color_hover: rgba($gif_btn_box_shadow_color, $button_bg_opacity_hove
   -webkit-touch-callout: none;
 
   .play_button {
-    background-color: $bg_color;
+    background-color: $gif_btn_bg_color;
     border: 2px dashed $gif_btn_border_color;
     border-radius: 50%;
-    box-shadow: 0 0 0 3px $box_shadow_color; 
+    box-shadow: 0 0 0 3px $gif_btn_box_shadow_color; 
     color: $gif_btn_text_color;
     cursor: pointer;
     font-family: $gif_btn_font_family;
     font-size: 24px;
     left: 50%;
-    opacity: 1.0;
+    opacity: $gif_btn_regular_opacity;
     padding: 14px 10px;
     position: absolute;
     top: 50%;
-    transform: translate(-50%, -50%) scale(1) rotate($start_rotation);
+    transform: translate(-50%, -50%) scale(1) rotate($gif_btn_paused_rotation);
     transition: transform 0.4s, opacity 0.4s;
 
     &:hover {
-      background-color: $bg_color_hover;
-      box-shadow: 0 0 0 3px $box_shadow_color_hover;
+      background-color: $gif_btn_bg_color_hover;
+      box-shadow: 0 0 0 3px $gif_btn_box_shadow_color_hover;
     }
 
     &::after {
-      content: 'GIF'
+      content: $gif_btn_text_content;
     }
   }
 
   &.playing .play_button {
-    transform: translate(-50%, -50%) scale(0) rotate($target_rotation);
-    opacity: $button_playing_opacity;
+    transform: translate(-50%, -50%) scale(0) rotate($gif_btn_playing_rotation);
+    opacity: $gif_btn_playing_opacity;
   }
 
   img {
-    max-width: $max_image_width;
+    max-width: 100%;
   }
 }
