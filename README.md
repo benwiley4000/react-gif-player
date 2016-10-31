@@ -88,20 +88,19 @@ CSS styles can be overridden easily. To add a border around the image, try inclu
 
 ## usage with sass
 
-If you preprocess your styles with Sass, you can have more powerful control via Sass variables. The following are included in **src/GifPlayer.scss**:
+If you preprocess your styles with Sass, you can have more powerful control via Sass variables. The defaults are located at the top of [**src/GifPlayer.scss**](src/GifPlayer.scss):
 
 ```scss
-$gif_btn_bg_color: #000 !default;
-$gif_btn_box_shadow_color: #000 !default;
-$gif_btn_text_color: #fff !default;
-$gif_btn_border_color: $gif_btn_text_color !default;
-$gif_btn_font_family: 'Helvetica Neue', Helvetica, Arial, sans-serif !default;
+$gif_btn_bg_base_color: #000 !default;
+$gif_btn_bg_opacity: 0.5 !default;
+$gif_btn_bg_opacity_hover: 0.7 !default;
+// ...etc
 ```
 The `!default` flag means that declaring alternatives **before** including the default styles will override them.
 
 ```scss
 // Include var overrides before default styles import
-$gif_btn_bg_color: gold;
+$gif_btn_bg_base_color: gold;
 $gif_btn_text_color: cornflowerblue;
 $gif_btn_font_family: serif;
 
