@@ -5,7 +5,8 @@
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
-  -webkit-touch-callout: none; }
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent; }
   .gif_player .play_button {
     background-color: rgba(0, 0, 0, 0.5);
     border: 2px dashed #fff;
@@ -16,7 +17,7 @@
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 24px;
     left: 50%;
-    opacity: 1.0;
+    opacity: 1;
     padding: 14px 10px;
     position: absolute;
     top: 50%;
@@ -30,7 +31,7 @@
       background-color: rgba(0, 0, 0, 0.7);
       box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.7); }
     .gif_player .play_button::after {
-      content: 'GIF'; }
+      content: "GIF"; }
   .gif_player.playing .play_button {
     -webkit-transform: translate(-50%, -50%) scale(0) rotate(180deg);
             transform: translate(-50%, -50%) scale(0) rotate(180deg);
