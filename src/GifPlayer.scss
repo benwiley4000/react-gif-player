@@ -11,14 +11,19 @@ $gif_btn_box_shadow_color: rgba($gif_btn_box_shadow_base_color, $gif_btn_box_sha
 $gif_btn_box_shadow_color_hover: rgba($gif_btn_box_shadow_base_color, $gif_btn_box_shadow_opacity_hover) !default;
 
 $gif_btn_text_color: #fff !default;
-$gif_btn_border_color: $gif_btn_text_color !default;
 $gif_btn_font_family: 'Helvetica Neue', Helvetica, Arial, sans-serif !default;
+
+$gif_btn_border_width: 2px !default;
+$gif_btn_border_style: dashed !default;
+$gif_btn_border_color: $gif_btn_text_color !default;
 
 $gif_btn_regular_opacity: 1.0 !default;
 $gif_btn_playing_opacity: 0.5 !default;
 
 $gif_btn_paused_rotation: 0deg !default;
 $gif_btn_playing_rotation: 180deg !default;
+
+$gif_btn_transition_duration: 0.4s;
 
 $gif_btn_text_content: 'GIF' !default;
 
@@ -30,7 +35,7 @@ $gif_btn_text_content: 'GIF' !default;
 
   .play_button {
     background-color: $gif_btn_bg_color;
-    border: 2px dashed $gif_btn_border_color;
+    border: $gif_btn_border_width $gif_btn_border_style $gif_btn_border_color;
     border-radius: 50%;
     box-shadow: 0 0 0 3px $gif_btn_box_shadow_color; 
     color: $gif_btn_text_color;
@@ -43,7 +48,7 @@ $gif_btn_text_content: 'GIF' !default;
     position: absolute;
     top: 50%;
     transform: translate(-50%, -50%) scale(1) rotate($gif_btn_paused_rotation);
-    transition: transform 0.4s, opacity 0.4s;
+    transition: transform $gif_btn_transition_duration, opacity $gif_btn_transition_duration;
 
     &:hover {
       background-color: $gif_btn_bg_color_hover;
