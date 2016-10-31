@@ -14,10 +14,6 @@ var webpackConfig = {
     library: 'GifPlayer',
     filename: 'gifplayer.js'
   },
-  devServer: {
-    inline: true,
-    staticOptions: { index: 'example.html' }
-  },
   module: {
     loaders: [
       {
