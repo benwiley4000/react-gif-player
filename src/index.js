@@ -14,7 +14,7 @@ class GifPlayerContainer extends React.Component {
     };
   }
 
-  componentDidMount() {
+  componentDidMount () {
     const { gif, still } = this.props;
     if (gif) {
       preload(gif);
