@@ -66,7 +66,7 @@ class GifPlayerContainer extends React.Component {
         }
       });
     }
-    if (newStill && newStill !== oldStill) {
+    if (newStill && oldStill !== newStill) {
       preload(newStill);
     }
   }
