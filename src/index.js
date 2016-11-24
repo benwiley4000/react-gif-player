@@ -2,36 +2,70 @@ import React from 'react';
 
 import GifPlayer from './GifPlayer';
 
-const preload = src => {
-  new Image().src = src;
+const preload = (src, callback) => {
+  var img = new Image();
+  if (typeof callback === 'function') {
+    img.onload = () => callback(img);
+  }
+  img.src = src;
 };
+
+const firstGifFrameUrl = img => {
+  const canvas = document.createElement('canvas');
+  if (typeof canvas.getContext !== 'function') {
+    return null;
+  }
+  canvas.width = img.width;
+  canvas.height = img.height;
+  const ctx = canvas.getContext('2d');
+  ctx.drawImage(img, 0, 0);
+  return canvas.toDataURL();
+}
 
 class GifPlayerContainer extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      playing: false
+      playing: false,
+      gif: props.gif,
+      still: props.still
     };
+    this.updateId = -1;
   }
 
   componentDidMount () {
-    const { gif, still } = this.props;
-    if (gif) {
-      preload(gif);
-    }
-    if (still) {
-      preload(still);
-    }
+    this.updateImages(this.props);
   }
 
   componentWillReceiveProps (nextProps) {
-    const oldGif = this.props.gif;
-    const newGif = nextProps.gif;
-    if (newGif && oldGif !== newGif) {
-      preload(newGif);
+    this.updateImages(nextProps, this.props);
+  }
+
+  updateImages (newProps, oldProps = {}) {
+    const oldGif = oldProps.gif;
+    const newGif = newProps.gif;
+    const oldStill = oldProps.still;
+    const newStill = newProps.still;
+    if (oldGif === newGif && oldStill === newStill) {
+      return;
     }
-    const oldStill = this.props.still;
-    const newStill = nextProps.still;
+
+    const updateId = ++this.updateId;
+    this.setState({
+      gif: newGif,
+      still: newStill
+    });
+
+    if (newGif && oldGif !== newGif) {
+      preload(newGif, img => {
+        if (!newStill && this.updateId === updateId) {
+          const still = firstGifFrameUrl(img);
+          if (still) {
+            this.setState({ still });
+          }
+        }
+      });
+    }
     if (newStill && newStill !== oldStill) {
       preload(newStill);
     }
@@ -47,7 +81,7 @@ class GifPlayerContainer extends React.Component {
     return (
       <GifPlayer
         {...this.props}
-        playing={this.state.playing}
+        {...this.state}
         toggle={() => this.toggle()}
       />
     );

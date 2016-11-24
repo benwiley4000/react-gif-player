@@ -78,6 +78,8 @@ Options can be passed to the `GifPlayer` element as props.
 
 `GifPlayer` expects one or both of the `gif` and `still` props. If one is left out, the other will be used as a fallback.
 
+However, if only a `gif` prop is provided, the first frame will be extracted and used as the still preview as soon as the GIF image has fully loaded.
+
 ## styles
 
 **Important:** In order for the default styles to be used, **dist/gifplayer.css** must be included in your HTML.
