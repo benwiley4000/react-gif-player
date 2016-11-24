@@ -76,8 +76,26 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var preload = function preload(src) {
-	  new Image().src = src;
+	var preload = function preload(src, callback) {
+	  var img = new Image();
+	  if (typeof callback === 'function') {
+	    img.onload = function () {
+	      return callback(img);
+	    };
+	  }
+	  img.src = src;
+	};
+
+	var firstGifFrameUrl = function firstGifFrameUrl(img) {
+	  var canvas = document.createElement('canvas');
+	  if (typeof canvas.getContext !== 'function') {
+	    return null;
+	  }
+	  canvas.width = img.width;
+	  canvas.height = img.height;
+	  var ctx = canvas.getContext('2d');
+	  ctx.drawImage(img, 0, 0);
+	  return canvas.toDataURL();
 	};
 
 	var GifPlayerContainer = function (_React$Component) {
@@ -89,35 +107,55 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var _this = _possibleConstructorReturn(this, (GifPlayerContainer.__proto__ || Object.getPrototypeOf(GifPlayerContainer)).call(this, props));
 
 	    _this.state = {
-	      playing: false
+	      playing: false,
+	      gif: props.gif,
+	      still: props.still
 	    };
+	    _this.updateId = -1;
 	    return _this;
 	  }
 
 	  _createClass(GifPlayerContainer, [{
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
-	      var _props = this.props,
-	          gif = _props.gif,
-	          still = _props.still;
-
-	      if (gif) {
-	        preload(gif);
-	      }
-	      if (still) {
-	        preload(still);
-	      }
+	      this.updateImages(this.props);
 	    }
 	  }, {
 	    key: 'componentWillReceiveProps',
 	    value: function componentWillReceiveProps(nextProps) {
-	      var oldGif = this.props.gif;
-	      var newGif = nextProps.gif;
-	      if (newGif && oldGif !== newGif) {
-	        preload(newGif);
+	      this.updateImages(nextProps, this.props);
+	    }
+	  }, {
+	    key: 'updateImages',
+	    value: function updateImages(newProps) {
+	      var _this2 = this;
+
+	      var oldProps = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+
+	      var oldGif = oldProps.gif;
+	      var newGif = newProps.gif;
+	      var oldStill = oldProps.still;
+	      var newStill = newProps.still;
+	      if (oldGif === newGif && oldStill === newStill) {
+	        return;
 	      }
-	      var oldStill = this.props.still;
-	      var newStill = nextProps.still;
+
+	      var updateId = ++this.updateId;
+	      this.setState({
+	        gif: newGif,
+	        still: newStill
+	      });
+
+	      if (newGif && oldGif !== newGif) {
+	        preload(newGif, function (img) {
+	          if (!newStill && _this2.updateId === updateId) {
+	            var still = firstGifFrameUrl(img);
+	            if (still) {
+	              _this2.setState({ still: still });
+	            }
+	          }
+	        });
+	      }
 	      if (newStill && newStill !== oldStill) {
 	        preload(newStill);
 	      }
@@ -132,12 +170,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	      var _this2 = this;
+	      var _this3 = this;
 
-	      return _react2.default.createElement(_GifPlayer2.default, _extends({}, this.props, {
-	        playing: this.state.playing,
+	      return _react2.default.createElement(_GifPlayer2.default, _extends({}, this.props, this.state, {
 	        toggle: function toggle() {
-	          return _this2.toggle();
+	          return _this3.toggle();
 	        }
 	      }));
 	    }
