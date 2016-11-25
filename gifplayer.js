@@ -82,6 +82,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    img.onload = function () {
 	      return callback(img);
 	    };
+	    img.setAttribute('crossOrigin', 'anonymous');
 	  }
 	  img.src = src;
 	};
@@ -156,7 +157,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	          }
 	        });
 	      }
-	      if (newStill && newStill !== oldStill) {
+	      if (newStill && oldStill !== newStill) {
 	        preload(newStill);
 	      }
 	    }
