@@ -1,6 +1,6 @@
 {
   "name": "react-gif-player",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "React component swaps still image with preloaded GIF on click",
   "main": "dist/index.js",
   "scripts": {
