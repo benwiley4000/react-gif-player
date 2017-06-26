@@ -97,6 +97,8 @@ gifFrames({ url: 'src/image.gif', frames: 0 }).then(function (frameData) {
 });
 ```
 
+If you need finer-tuned control over image quality, you can try [Gifsicle](https://www.lcdf.org/gifsicle/).
+
 ## styles
 
 **Important:** In order for the default styles to be used, **dist/gifplayer.css** must be included in your HTML.
