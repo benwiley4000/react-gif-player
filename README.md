@@ -80,6 +80,23 @@ Options can be passed to the `GifPlayer` element as props.
 
 However, if only a `gif` prop is provided, the first frame will be extracted and used as the still preview as soon as the GIF image has fully loaded.
 
+## generating still frame at build time
+
+The disadvantage of not providing a `still` prop, even though a stand-in will be generated, is that your GIF must fully load before the still frame appears instead of the (likely slowly moving) GIF.
+
+One streamlined way to generate a still frame ahead of time is to incorporate the [gif-frames module](https://github.com/benwiley4000/gif-frames), which has only pure JavaScript dependencies, into your build process.
+
+e.g.
+
+```javascript
+var gifFrames = require('gif-frames');
+var fs = require('fs');
+
+gifFrames({ url: 'src/image.gif', frames: 0 }).then(function (frameData) {
+  frameData[0].getImageStream().pipe(fs.createWriteStream('build/still.jpg'));
+});
+```
+
 ## styles
 
 **Important:** In order for the default styles to be used, **dist/gifplayer.css** must be included in your HTML.
