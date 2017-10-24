@@ -51,5 +51,8 @@
   "bugs": {
     "url": "https://github.com/benwiley4000/react-gif-player/issues"
   },
-  "homepage": "https://github.com/benwiley4000/react-gif-player#readme"
+  "homepage": "https://github.com/benwiley4000/react-gif-player#readme",
+  "dependencies": {
+    "prop-types": "^15.6.0"
+  }
 }
