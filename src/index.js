@@ -1,30 +1,31 @@
-import React from "react";
-import PropTypes from "prop-types";
-import GifPlayer from "./GifPlayer";
+import React from 'react';
+import PropTypes from 'prop-types';
+
+import GifPlayer from './GifPlayer';
 
 const preload = (src, callback) => {
   var img = new Image();
-  if (typeof callback === "function") {
+  if (typeof callback === 'function') {
     img.onload = () => callback(img);
-    img.setAttribute("crossOrigin", "anonymous");
+    img.setAttribute('crossOrigin', 'anonymous');
   }
   img.src = src;
 };
 
 const firstGifFrameUrl = img => {
-  const canvas = document.createElement("canvas");
-  if (typeof canvas.getContext !== "function") {
+  const canvas = document.createElement('canvas');
+  if (typeof canvas.getContext !== 'function') {
     return null;
   }
   canvas.width = img.width;
   canvas.height = img.height;
-  const ctx = canvas.getContext("2d");
+  const ctx = canvas.getContext('2d');
   ctx.drawImage(img, 0, 0);
   return canvas.toDataURL();
-};
+}
 
 class GifPlayerContainer extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props);
     this.state = {
       playing: false,
@@ -34,15 +35,15 @@ class GifPlayerContainer extends React.Component {
     this.updateId = -1;
   }
 
-  componentDidMount() {
+  componentDidMount () {
     this.updateImages(this.props);
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps (nextProps) {
     this.updateImages(nextProps, this.props);
   }
 
-  updateImages(newProps, oldProps = {}) {
+  updateImages (newProps, oldProps = {}) {
     const oldGif = oldProps.gif;
     const newGif = newProps.gif;
     const oldStill = oldProps.still;
@@ -72,15 +73,19 @@ class GifPlayerContainer extends React.Component {
     }
   }
 
-  toggle() {
+  toggle () {
     this.setState({
       playing: !this.state.playing
     });
   }
 
-  render() {
+  render () {
     return (
-      <GifPlayer {...this.props} {...this.state} toggle={() => this.toggle()} />
+      <GifPlayer
+        {...this.props}
+        {...this.state}
+        toggle={() => this.toggle()}
+      />
     );
   }
 }
