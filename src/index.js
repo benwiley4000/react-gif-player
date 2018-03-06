@@ -28,7 +28,7 @@ class GifPlayerContainer extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      playing: !!Boolean(props.autoPlay),
+      playing: Boolean(props.autoPlay),
       gif: props.gif,
       still: props.still
     };
@@ -48,20 +48,22 @@ class GifPlayerContainer extends React.Component {
     const newGif = newProps.gif;
     const oldStill = oldProps.still;
     const newStill = newProps.still;
-    const oldAutoPlay = oldProps.autoPlay;
-    const newAutoPlay = newProps.autoPlay;
-    if (oldGif === newGif && oldStill === newStill && oldAutoPlay === newAutoPlay) {
+    if (oldGif === newGif && oldStill === newStill) {
       return;
     }
 
     const updateId = ++this.updateId;
     this.setState({
       gif: newGif,
-      still: newStill,
-      playing: newAutoPlay,
+      still: newStill
     });
 
     if (newGif && oldGif !== newGif) {
+      if (newProps.autoplay) {
+        this.setState({
+          playing: true
+        });
+      }
       preload(newGif, img => {
         if (!newStill && this.updateId === updateId) {
           const still = firstGifFrameUrl(img);
@@ -96,7 +98,7 @@ class GifPlayerContainer extends React.Component {
 GifPlayerContainer.propTypes = {
   gif: PropTypes.string,
   still: PropTypes.string,
-  autoPlay: PropTypes.bool,
+  autoplay: PropTypes.bool
 };
 
 module.exports = GifPlayerContainer;
