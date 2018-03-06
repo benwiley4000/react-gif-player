@@ -36,6 +36,9 @@ class GifPlayerContainer extends React.Component {
   }
 
   componentDidMount () {
+    if (typeof this.props.pauseRef === 'function') {
+      this.props.pauseRef(() => this.setState({ playing: false }));
+    }
     this.updateImages(this.props);
   }
 
@@ -98,7 +101,8 @@ class GifPlayerContainer extends React.Component {
 GifPlayerContainer.propTypes = {
   gif: PropTypes.string,
   still: PropTypes.string,
-  autoplay: PropTypes.bool
+  autoplay: PropTypes.bool,
+  pauseRef: PropTypes.func,
 };
 
 module.exports = GifPlayerContainer;
