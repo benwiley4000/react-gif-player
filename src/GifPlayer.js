@@ -1,16 +1,18 @@
-import React from "react";
-import classNames from "classnames";
-import PropTypes from "prop-types";
-import "./GifPlayer.scss";
+import React from 'react';
+import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
-const GifPlayer = ({ gif, still, playing, toggle, ...rest }) =>
+import './GifPlayer.scss';
+
+const GifPlayer = ({ gif, still, playing, toggle, ...rest }) => (
   <div
-    className={classNames("gif_player", { playing: playing })}
+    className={classNames('gif_player', { 'playing': playing })}
     onClick={toggle}
   >
     <div className="play_button" />
-    <img {...rest} src={playing ? gif || still : still || gif} />
-  </div>;
+    <img {...rest} src={playing ? (gif || still) : (still || gif)} />
+  </div>
+);
 
 GifPlayer.propTypes = {
   gif: PropTypes.string,
