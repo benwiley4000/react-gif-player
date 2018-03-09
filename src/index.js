@@ -25,12 +25,34 @@ const firstGifFrameUrl = img => {
 }
 
 class GifPlayerContainer extends React.Component {
+  static getDerivedStateFromProps (nextProps, prevState) {
+    const prevGif = prevState.providedGif;
+    const nextGif = nextProps.gif;
+    const prevStill = prevState.providedStill;
+    const nextStill = nextProps.still;
+    if (prevGif === nextGif && prevStill === nextStill) {
+      return null;
+    }
+
+    return {
+      playing: nextGif && nextProps.autoplay && oldGif !== nextGif
+        ? true
+        : prevState.playing,
+      providedGif: nextGif,
+      providedStill: nextStill,
+      actualGif: nextGif,
+      actualStill: nextStill
+    };
+  }
+
   constructor (props) {
     super(props);
     this.state = {
       playing: Boolean(props.autoPlay),
-      gif: props.gif,
-      still: props.still
+      providedGif: props.gif,
+      providedStill: props.still,
+      actualGif: props.gif,
+      actualStill: props.still
     };
     this.updateId = -1;
   }
@@ -42,42 +64,35 @@ class GifPlayerContainer extends React.Component {
     this.updateImages(this.props);
   }
 
+  // fallback for pre-React 16.3
   componentWillReceiveProps (nextProps) {
-    this.updateImages(nextProps, this.props);
+    const nextState =
+      this.constructor.getDerivedStateFromProps(nextProps, this.state);
+    if (nextState) {
+      this.setState(nextState);
+    }
   }
 
-  updateImages (newProps, oldProps = {}) {
-    const oldGif = oldProps.gif;
-    const newGif = newProps.gif;
-    const oldStill = oldProps.still;
-    const newStill = newProps.still;
-    if (oldGif === newGif && oldStill === newStill) {
-      return;
-    }
+  componentDidUpdate (prevProps, prevState) {
+    this.updateImages(prevState);
+  }
 
-    const updateId = ++this.updateId;
-    this.setState({
-      gif: newGif,
-      still: newStill
-    });
-
-    if (newGif && oldGif !== newGif) {
-      if (newProps.autoplay) {
-        this.setState({
-          playing: true
-        });
-      }
-      preload(newGif, img => {
-        if (!newStill && this.updateId === updateId) {
-          const still = firstGifFrameUrl(img);
-          if (still) {
-            this.setState({ still });
+  updateImages (prevState = {}) {
+    const { providedGif, providedStill } = this.state;
+    if (
+      providedGif &&
+      !providedStill &&
+      providedGif !== prevState.providedGif
+    ) {
+      const updateId = ++this.updateId;
+      preload(providedGif, img => {
+        if (this.updateId === updateId) {
+          const actualStill = firstGifFrameUrl(img);
+          if (actualStill) {
+            this.setState({ actualStill });
           }
         }
       });
-    }
-    if (newStill && oldStill !== newStill) {
-      preload(newStill);
     }
   }
 
@@ -88,14 +103,30 @@ class GifPlayerContainer extends React.Component {
   }
 
   render () {
+    const {
+      actualGif,
+      actualStill,
+      providedGif,
+      providedStill,
+      playing
+    } = this.state;
     return (
       <GifPlayer
-        {...this.props}
-        {...this.state}
+        gif={actualGif || providedGif}
+        still={actualStill || providedStill}
+        playing={playing}
         toggle={() => this.toggle()}
       />
     );
   }
+}
+
+// if we're at 16.3 or greater, let's remove componentWillReceiveProps to
+// avoid warning messages
+const reactBaseVersion = (React.version || '').split('-')[0];
+const splitVersion = reactBaseVersion.split('.');
+if (Number(splitVersion[0]) >= 16 && Number(splitVersion[1]) >= 3) {
+  delete GifPlayerContainer.prototype.componentWillReceiveProps;
 }
 
 GifPlayerContainer.propTypes = {
