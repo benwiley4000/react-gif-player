@@ -35,13 +35,15 @@ class GifPlayerContainer extends React.Component {
     }
 
     return {
-      playing: nextGif && nextProps.autoplay && oldGif !== nextGif
+      playing: nextGif && nextProps.autoplay && prevGif !== nextGif
         ? true
         : prevState.playing,
       providedGif: nextGif,
       providedStill: nextStill,
       actualGif: nextGif,
-      actualStill: nextStill
+      actualStill: nextStill || prevGif !== nextGif
+        ? nextStill
+        : prevState.actualStill
     };
   }
 
