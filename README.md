@@ -89,7 +89,7 @@ Options can be passed to the `GifPlayer` element as props.
         <GifPlayer
           src={src}
           still={still}
-          pauseRef={ref => this.pauseGif = ref}
+          pauseRef={pause => this.pauseGif = pause}
         />
       );
     }
