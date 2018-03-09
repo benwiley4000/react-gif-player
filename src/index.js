@@ -103,17 +103,11 @@ class GifPlayerContainer extends React.Component {
   }
 
   render () {
-    const {
-      actualGif,
-      actualStill,
-      providedGif,
-      providedStill,
-      playing
-    } = this.state;
+    const { actualGif, actualStill, playing } = this.state;
     return (
       <GifPlayer
-        gif={actualGif || providedGif}
-        still={actualStill || providedStill}
+        gif={actualGif}
+        still={actualStill}
         playing={playing}
         toggle={() => this.toggle()}
       />
