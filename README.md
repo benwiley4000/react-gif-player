@@ -74,6 +74,28 @@ Options can be passed to the `GifPlayer` element as props.
 
 * `still`: a *string* address to a still preview of the GIF (e.g. JPG, PNG, etc.)
 
+* `autoplay`: a *boolean* which can be set `true` if you want to immediately bombard your user with a moving GIF as soon as it's available
+ 
+* `pauseRef`: a *function* callback is called with another function, `pause` - this can be saved and called later to remotely pause the playing of the GIF, in such cases where that might be desired. For example, you might want to stop the GIF when it scrolls offscreen. The word "ref" is used because its usage pattern is similar to [React element refs](https://reactjs.org/docs/refs-and-the-dom.html):
+  ```jsx
+  // here's an example
+  class MyGifWrapper extends React.Component {
+    componentDidMount () {
+      addEventListenerWhenGifFlowsOffscreen(this.pauseGif);
+    }
+ 
+    render () {
+      return (
+        <GifPlayer
+          src={src}
+          still={still}
+          pauseRef={ref => this.pauseGif = ref}
+        />
+      );
+    }
+  }
+  ```
+ 
 * Any other attribute available on the HTML `img` tag can be passed as well (excluding `src`, which would be overwritten), though keep in mind React's version of that attribute [may be different than you expect](https://facebook.github.io/react/docs/dom-elements.html#all-supported-html-attributes).
 
 `GifPlayer` expects one or both of the `gif` and `still` props. If one is left out, the other will be used as a fallback.
