@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import lifecyclesPoylfill from 'react-lifecycles-compat';
 
 import GifPlayer from './GifPlayer';
 
@@ -66,15 +67,6 @@ class GifPlayerContainer extends React.Component {
     this.updateImages();
   }
 
-  // fallback for pre-React 16.3
-  componentWillReceiveProps (nextProps) {
-    const nextState =
-      this.constructor.getDerivedStateFromProps(nextProps, this.state);
-    if (nextState) {
-      this.setState(nextState);
-    }
-  }
-
   componentDidUpdate (prevProps, prevState) {
     this.updateImages(prevState);
   }
@@ -117,13 +109,7 @@ class GifPlayerContainer extends React.Component {
   }
 }
 
-// if we're at 16.3 or greater, let's remove componentWillReceiveProps to
-// avoid warning messages
-const reactBaseVersion = (React.version || '').split('-')[0];
-const splitVersion = reactBaseVersion.split('.');
-if (Number(splitVersion[0]) >= 16 && Number(splitVersion[1]) >= 3) {
-  delete GifPlayerContainer.prototype.componentWillReceiveProps;
-}
+lifecyclesPoylfill(GifPlayerContainer);
 
 GifPlayerContainer.propTypes = {
   gif: PropTypes.string,
