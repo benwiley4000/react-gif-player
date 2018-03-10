@@ -35,6 +35,12 @@ var webpackConfig = {
     return [autoprefixer({ browsers: ["> 2%"] })];
   },
   externals: {
+    'prop-types': {
+      root: 'PropTypes',
+      commonjs: 'prop-types',
+      commonjs2: 'prop-types',
+      amd: 'prop-types'
+    },
     'react': {
       root: 'React',
       commonjs: 'react',
