@@ -4,8 +4,14 @@
   "description": "React component swaps still image with preloaded GIF on click",
   "main": "dist/gifplayer.js",
   "scripts": {
-    "build": "rimraf dist && webpack --progress",
+    "build:clean": "rimraf dist",
+    "build:umd": "webpack --progress",
+    "build:uglifyjs": "uglifyjs dist/gifplayer.js -o dist/gifplayer.min.js",
+    "build:uglifycss": "uglifycss dist/gifplayer.css > dist/gifplayer.min.css",
+    "build:uglify": "npm run build:uglifyjs && npm run build:uglifycss",
+    "build": "npm run build:clean && npm run build:umd && npm run build:uglify",
     "dev": "rimraf dist && node devServer.js",
+    "prepublish": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -38,6 +44,8 @@
     "rimraf": "^2.5.4",
     "sass-loader": "^4.0.2",
     "style-loader": "^0.13.1",
+    "uglifycss": "0.0.28",
+    "uglifyjs": "^2.4.11",
     "webpack": "^1.13.2",
     "webpack-dev-server": "^1.16.2"
   },
