@@ -51,7 +51,7 @@ class GifPlayerContainer extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      playing: Boolean(props.autoPlay),
+      playing: Boolean(props.autoplay),
       providedGif: props.gif,
       providedStill: props.still,
       actualGif: props.gif,
