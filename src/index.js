@@ -69,6 +69,10 @@ class GifPlayerContainer extends React.Component {
 
   componentDidUpdate (prevProps, prevState) {
     this.updateImages(prevState);
+    const { onTogglePlay=()=>{} } = this.props;
+    if (prevState.playing !== this.state.playing) {
+      onTogglePlay(this.state.playing);
+    }
   }
 
   updateImages (prevState = {}) {
@@ -93,8 +97,6 @@ class GifPlayerContainer extends React.Component {
   toggle () {
     this.setState({
       playing: !this.state.playing
-    }, () => {
-      this.props.onChange && this.props.onChange(this.state.playing)
     });
   }
 
@@ -118,7 +120,7 @@ GifPlayerContainer.propTypes = {
   still: PropTypes.string,
   autoplay: PropTypes.bool,
   pauseRef: PropTypes.func,
-  onChange: PropTypes.func,
+  onTogglePlay: PropTypes.func,
 };
 
 module.exports = GifPlayerContainer;
