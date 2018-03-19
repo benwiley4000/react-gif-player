@@ -75,6 +75,8 @@ Options can be passed to the `GifPlayer` element as props.
 * `still`: a *string* address to a still preview of the GIF (e.g. JPG, PNG, etc.)
 
 * `autoplay`: a *boolean* which can be set `true` if you want to immediately bombard your user with a moving GIF as soon as it's available
+
+* `onTogglePlay`: a *function* which is called whenever the GIF toggles between playing and paused. Receives one argument, `playing`, which is a *boolean*.
  
 * `pauseRef`: a *function* callback is called with another function, `pause` - this can be saved and called later to remotely pause the playing of the GIF, in such cases where that might be desired. For example, you might want to stop the GIF when it scrolls offscreen. The word "ref" is used because its usage pattern is similar to [React element refs](https://reactjs.org/docs/refs-and-the-dom.html):
   ```jsx
