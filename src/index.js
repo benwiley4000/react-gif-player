@@ -101,9 +101,12 @@ class GifPlayerContainer extends React.Component {
   }
 
   render () {
+    // extract these props but pass down the rest
+    const { autoplay, pauseRef, onTogglePlay, ...rest } = this.props;
     const { actualGif, actualStill, playing } = this.state;
     return (
       <GifPlayer
+        {...rest}
         gif={actualGif}
         still={actualStill}
         playing={playing}
