@@ -89,7 +89,7 @@ Options can be passed to the `GifPlayer` element as props.
     render () {
       return (
         <GifPlayer
-          src={src}
+          gif={src}
           still={still}
           pauseRef={pause => this.pauseGif = pause}
         />
@@ -97,6 +97,7 @@ Options can be passed to the `GifPlayer` element as props.
     }
   }
   ```
+  Still confused? Here's a [jsfiddle](http://jsfiddle.net/1snhzgo8/7/) which shows how to use `pauseRef`.
  
 * Any other attribute available on the HTML `img` tag can be passed as well (excluding `src`, which would be overwritten), though keep in mind React's version of that attribute [may be different than you expect](https://facebook.github.io/react/docs/dom-elements.html#all-supported-html-attributes).
 
