@@ -1,38 +1,45 @@
 var webpack = require('webpack');
 var autoprefixer = require('autoprefixer');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 var webpackConfig = {
+  mode: process.env.NODE_ENV === 'development' ? 'development' : 'production',
   entry: './src/index.js',
   resolve: {
-    extensions: ['', '.js', '.jsx']
+    extensions: ['.js', '.jsx']
   },
   output: {
     path: __dirname + '/dist',
     publicPath: '/dist/',
     libraryTarget: 'umd',
     library: 'GifPlayer',
+    libraryExport: 'default',
     filename: 'gifplayer.js'
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.css$/,
-        loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader'
+        ]
       },
       {
         test: /\.scss$/,
-        loader: ExtractTextPlugin.extract('style-loader', 'css!postcss!sass')
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          'postcss-loader',
+          'sass-loader'
+        ]
       },
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        loader: 'babel'
+        loader: 'babel-loader'
       }
     ]
-  },
-  postcss: function () {
-    return [autoprefixer({ browsers: ["> 2%"] })];
   },
   externals: {
     'prop-types': {
@@ -49,11 +56,12 @@ var webpackConfig = {
     }
   },
   plugins: [
-    new webpack.NoErrorsPlugin(),
-    new ExtractTextPlugin('gifplayer.css', {
-      allChunks: true
-    })
-  ]
+    new MiniCssExtractPlugin({ filename: 'gifplayer.css' })
+  ],
+  optimization: {
+    noEmitOnErrors: true,
+    minimize: false
+  }
 };
 
 module.exports = webpackConfig;

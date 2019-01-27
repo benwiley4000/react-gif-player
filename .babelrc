@@ -1,4 +1,7 @@
 {
-  "presets": ["es2015", "react"],
-  "plugins": ["transform-object-rest-spread"]
+  "presets": [
+    ["@babel/preset-env", { modules: false, loose: true }],
+    "@babel/react"
+  ],
+  "plugins": ["@babel/plugin-proposal-object-rest-spread"]
 }

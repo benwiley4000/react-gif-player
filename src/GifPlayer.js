@@ -21,4 +21,4 @@ GifPlayer.propTypes = {
   toggle: PropTypes.func
 };
 
-module.exports = GifPlayer;
+export default GifPlayer;

@@ -126,4 +126,4 @@ GifPlayerContainer.propTypes = {
   onTogglePlay: PropTypes.func
 };
 
-module.exports = GifPlayerContainer;
+export default GifPlayerContainer;
