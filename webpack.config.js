@@ -14,7 +14,8 @@ var webpackConfig = {
     libraryTarget: 'umd',
     library: 'GifPlayer',
     libraryExport: 'default',
-    filename: 'gifplayer.js'
+    filename: 'gifplayer.js',
+    globalObject: '(typeof self !== "undefined" ? self : this)'
   },
   module: {
     rules: [
