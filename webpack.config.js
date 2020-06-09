@@ -15,7 +15,7 @@ var webpackConfig = {
     library: 'GifPlayer',
     libraryExport: 'default',
     filename: 'gifplayer.js',
-    globalObject: 'this' //!!!This line
+    globalObject: '(typeof self !== "undefined" ? self : this)'
   },
   module: {
     rules: [
