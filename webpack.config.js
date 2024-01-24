@@ -62,7 +62,6 @@ const webpackConfig = {
     new MiniCssExtractPlugin({ filename: 'gifplayer.css' })
   ],
   optimization: {
-    emitOnErrors: true,
     minimize: false
   }
 };
