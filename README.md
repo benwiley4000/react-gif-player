@@ -40,16 +40,16 @@ If you're unable to use npm and need production-ready scripts, check out [the re
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <!-- gifplayer.css v0.4.2 -->
-    <link rel="stylesheet" href="https://unpkg.com/react-gif-player@0.4.2/dist/gifplayer.css">
+    <!-- gifplayer.css v0.5.0 -->
+    <link rel="stylesheet" href="https://unpkg.com/react-gif-player@0.5.0/dist/gifplayer.css">
   </head>
   <body>
     <div id="cat"></div>
     <!-- react/react-dom served over CDN -->
-    <script src="https://unpkg.com/react@16.3.0-alpha.1/umd/react.development.js"></script>
-    <script src="https://unpkg.com/react@16.3.0-alpha.1/umd/react-dom.development.js"></script>
-    <!-- gifplayer.js v0.4.2 -->
-    <script src="https://unpkg.com/react-gif-player@0.4.2/dist/gifplayer.js"></script>
+    <script src="https://unpkg.com/react@18.2.0/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
+    <!-- gifplayer.js v0.5.0 -->
+    <script src="https://unpkg.com/react-gif-player@0.5.0/dist/gifplayer.js"></script>
     <script>
       ReactDOM.render(
         React.createElement(GifPlayer, {

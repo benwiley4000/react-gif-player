@@ -1,12 +1,15 @@
-var webpack = require('webpack');
-var autoprefixer = require('autoprefixer');
-var MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-var webpackConfig = {
+const webpackConfig = {
   mode: process.env.NODE_ENV === 'development' ? 'development' : 'production',
   entry: './src/index.js',
   resolve: {
     extensions: ['.js', '.jsx']
+  },
+  devServer: {
+    static: {
+      directory: __dirname,
+    },
   },
   output: {
     path: __dirname + '/dist',
@@ -59,7 +62,6 @@ var webpackConfig = {
     new MiniCssExtractPlugin({ filename: 'gifplayer.css' })
   ],
   optimization: {
-    noEmitOnErrors: true,
     minimize: false
   }
 };
