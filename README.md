@@ -46,8 +46,8 @@ If you're unable to use npm and need production-ready scripts, check out [the re
   <body>
     <div id="cat"></div>
     <!-- react/react-dom served over CDN -->
-    <script src="https://unpkg.com/react@16.3.0-alpha.1/umd/react.development.js"></script>
-    <script src="https://unpkg.com/react@16.3.0-alpha.1/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/react@18.2.0/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
     <!-- gifplayer.js v0.4.2 -->
     <script src="https://unpkg.com/react-gif-player@0.4.2/dist/gifplayer.js"></script>
     <script>
